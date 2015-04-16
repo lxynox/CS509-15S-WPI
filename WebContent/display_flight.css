@@ -1,0 +1,141 @@
+@CHARSET "UTF-8";
+
+body,html {
+	font-family: "Trebuchet MS", Verdana, sans-serif;
+	background-color: black;
+	height: 100%;
+	#background-color: #4682B4;
+}
+
+#main {
+	height: 100%;
+	width: 100%;
+}
+
+h3 {
+	padding: 8px;
+}
+
+#left {
+	width:	20%;
+	float: left;
+	background-color:  #4682B4;
+	border: 3px solid #cc9900;
+}
+
+#right {
+	background-color: black;
+	#background-color: #4682B4;
+	height: 1000px;
+}
+
+.flights {
+	background-color: blue;
+}
+
+.flight_leg {
+	background-color: lightseagreen;
+}
+
+
+.detail_flight_info table {
+	margin-left: 10%;	
+	width: 80%;
+	border-spacing: 8px;
+}
+.detail_flight_info table tr td {
+	font-size: 1.1em;
+	background-color: cadetblue;
+	text-align: center;
+	#background-color: orange;
+}
+
+.departing table {
+	margin-left: 30%;
+	border-spacing: 8px;
+	width: 60%;
+}
+.departing table tr td {
+	font-size: 1.1em;
+	text-align: center;
+	#border: 3px solid #cc9900;
+	#background-color: cadetblue;
+	padding: 2px;
+}
+
+table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+
+.filter_window {
+	border-bottom: 2px solid #cc9900;
+	#height: 200px;
+}
+.filter_content {
+	margin-left: 20px;
+}
+
+.ticket_info {
+	background-color: cadetblue; 
+	margin: 30px 20px 0 22%;
+	border: black dotted 3px;
+	height: 235px;
+}
+
+.detail_flight_info {
+	color: white;
+	background-color: black; 
+	margin: 0 20px 0px 22%; 
+	#height: 350px"
+}
+
+.departing {
+	margin: 20px; 
+}
+
+.departing_left, .departing {
+	vertical-align: bottom; 
+}
+
+.detail_hinter:hover {
+	text-decoration: underline;
+}
+
+#stop input {
+	margin: 10px;
+}
+
+#seat input {
+	margin: 10px;
+}
+
+.no_match_hint {
+	margin-top: 10%;
+	text-align: center;
+	color: white;
+	font-size: 1.4em;
+}
+
+.slider {
+	width: 80%; 
+	height: 15px;
+	margin-left: 5%; 
+	margin-bottom: 40px;
+}
+
+.slider_range {
+	font-size: .8em;
+	margin-left: 20%;
+}
+
+.page_button {
+	margin: 25px 80%;
+	height: 100px;
+}
+
+.page_button button {
+	margin-left: 30px;
+	width: 100px;
+	height: 40px;
+}

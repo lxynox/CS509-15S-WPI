@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <servlet>
+    <servlet-name>MyServlet</servlet-name>
+    <servlet-class>com.flight_ticket_search.Service.RequestFlightServiceImpl</servlet-class>
+    <init-param>
+      <param-name>参数名称</param-name>
+      <param-value>参数值</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>MyServlet</servlet-name>
+    <url-pattern>/requestFlightServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
+    <servlet-name>MyServlet2</servlet-name>
+    <servlet-class>com.flight_ticket_search.Service.SortFlightServiceImpl</servlet-class>
+    <init-param>
+      <param-name>参数名称</param-name>
+      <param-value>参数值</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>MyServlet2</servlet-name>
+    <url-pattern>/sortServlet</url-pattern>
+  </servlet-mapping>
+ 
+  
+   <servlet>
+    <servlet-name>MyServlet3</servlet-name>
+    <servlet-class>com.flight_ticket_search.Service.SortRoundFlightServiceImpl</servlet-class>
+    <init-param>
+      <param-name>参数名称</param-name>
+      <param-value>参数值</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>MyServlet3</servlet-name>
+    <url-pattern>/sortRoundServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>MyServlet4</servlet-name>
+    <servlet-class>com.flight_ticket_search.Service.ReservationServiceImpl</servlet-class>
+    <init-param>
+      <param-name>参数名称</param-name>
+      <param-value>参数值</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>MyServlet4</servlet-name>
+    <url-pattern>/buyServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>MyServlet5</servlet-name>
+    <servlet-class>com.flight_ticket_search.Service.CheckOrderServiceImpl</servlet-class>
+    <init-param>
+      <param-name></param-name>
+      <param-value></param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>MyServlet5</servlet-name>
+    <url-pattern>/orderServlet</url-pattern>
+  </servlet-mapping>
+ 
+  
+  
+  <welcome-file-list>
+    <welcome-file>homepage.html</welcome-file>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>homepage.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

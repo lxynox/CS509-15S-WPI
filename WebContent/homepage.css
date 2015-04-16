@@ -1,0 +1,224 @@
+ body {
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 16px;
+    color: black; 
+    background-color: #4682B4;
+ }
+ 
+ #header {
+	margin-left: 10px;
+	color: white;
+	text-shadow: 8px 8px 8px #191970;
+ }
+ #navigator {
+    #overflow: auto;
+	position: auto;
+	height: 70px;
+    font-family: Arial, Helvetica, sans-serif; 
+	font-size: 16px;
+	background-color: black;
+	/*98bf21;*/
+ }
+ #navigator img {
+    padding: 10px;
+    width: 50px;
+    height: 50px;	
+ }
+ ul.nav_sub {
+	display: none;
+	top: 138px;
+	right: 20px;
+	width: auto;
+	padding: 18px;
+	background-color: black;
+ }
+ ul.nav_sub li {
+	display: block;
+ }
+ ul.nav_sub li a {
+	padding: 24px;
+	color: white;
+	text-decoration: none;
+ }
+ ul.nav_sub li a:hover, a:active {
+	font-weight: bold;
+	font-size: 20px;
+ }
+ ul.travel {
+	#background-color: red;
+	position: absolute;
+	height: 60px;
+	padding-top: 20px;
+	top: 76px;
+	left: 330px;
+ }
+ ul.travel li {
+    display: inline;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 16px;
+	margin-right: 24px;
+	color: white;
+ }
+ ul.travel li:hover, li:active {
+    background-color: lightseagreen;/*#7A991A;*/
+	color: white; 
+	font-weight: bold;
+	border-radius: 15px;
+	#border: 1px solid black;
+ }
+ #hotel ul {
+	background-color: black;
+	position: absolute;
+	height: 65px;
+	padding-top: 50px;
+	padding-left: 30px;
+	margin-top: 10px;
+	#border-radius: 10px;
+ }
+ #hotel ul li {
+	#background-color: blue;
+	display: inline;
+	padding: 10px;
+	font-size: .9em;
+ }
+ #hotel ul li:hover {
+	#background-color: black;
+	font-weight: bold;
+	font-size: 1em;
+	background-color: black;
+ }
+ #hotel  ul li a {
+	#background-color: black;
+	color: white;
+	margin-right: 20px;
+	text-decoration: none;
+ }
+
+ #empty_div {
+    background-color: darkgray;
+	height: 400px;
+	position: relative;
+	margin: 5px; 
+ }
+ #single_ticket {
+    background-color: darkgray;
+	height: auto;
+	position: relative;
+	margin: 5px;
+ }
+ .single_div {
+	#background-color: green; 
+    float: left; 
+	width: 200px;
+	margin: 5px;
+	margin-right: 100px;
+ }
+ #round_ticket {
+    background-color: darkgray;
+	height: auto;
+	position: relative;
+	margin: 5px;
+ }
+ .round_div {
+    #background-color: green; 
+    float: left; 
+	width: 200px;
+	margin: 5px;
+	margin-right: 100px;
+ }
+ #multi_ticket {
+	background-color: darkgray;
+	height: auto;
+	position: relative;
+	margin: 5px;
+ }
+ .multi_div {
+	#background-color: green; 
+    float: left; 
+	width: 200px;
+	margin: 5px;
+	margin-right: 100px;
+ }
+ #footer {
+	font-family: sans-serif;
+    # background-color: navy;
+	height: 150px;
+ }
+ 
+ #h1 {
+    font-family: Georgia, serif;
+    border-bottom: 3px solid #cc9900;
+    color: #996600;
+    font-size: 30px;
+ }
+
+ ul.trip {
+   padding: 5px;
+   margin-bottom: 11px;
+ }
+ ul.trip li {
+   display: inline;
+   margin-right: 3px;
+ }
+ ul.trip li a {
+   background-color: lightgray;
+   padding: 10px 20px;
+   text-decoration: none;
+   color: navy;
+   font-weight: bold;
+   border-radius: 4px 4px 0 0;
+   box-shadow: 10px 10px 5px #888888;
+ }
+ ul.trip li a:hover, a:active {
+    color: black;
+	font-size: 1.2em;
+    background-color: darkgray;
+	border-bottom: 7px solid darkgray;# ensure connection with the below pattern
+ }
+ #myCanvas {
+    width: 200px;
+	height: 200px;
+	position: absolute;
+    bottom: 50px;
+	right: 0;
+	#margin-right: 500px;
+ }
+ .single_ticket_input { 
+    padding: 8px;
+	margin-bottom: 12px;
+	font-size: 1.3em;
+	background-color: cadetblue;
+ }
+ .round_ticket_input {
+    padding: 8px;
+	margin-right: 80px;
+	margin-bottom: 12px;
+	font-size: 1.3em;
+	background-color: cadetblue;
+ }
+ .multi_ticket_input {
+    padding: 8px;
+	margin-right: 80px;
+	margin-bottom: 12px;
+	font-size: 1.3em;
+	background-color: cadetblue;
+ }
+ .search_button {
+	margin: 40px 5px;
+	#margin-left: 5px;
+	padding: 10px 20px; 
+	font-size: 1.2em;
+	font-style: italic;
+	background-color: cadetblue;
+	#rosybrown;
+ }
+ .add_del_button {
+    clear: both;
+	background-color: lightgray;
+	width: 55px;
+	height: 55px;
+    #padding: 5px;
+	margin: 5px;
+	font-size: 2em;
+ }
