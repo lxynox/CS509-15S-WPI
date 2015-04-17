@@ -20,6 +20,8 @@ import com.flight_ticket_search.Util.QueryFactory;
  * @author lxybi_000
  *
  */
+
+
 class SQLConnector {
 
 	// JDBC driver name and database URL
@@ -165,6 +167,9 @@ class SQLConnector {
 			   System.out.println("Goodbye!");
 		}//end main
 		
+		 
+		 
+		 
 		public boolean addUser (User user) {
 			String sql = QueryFactory.addUser(user);
 			dbSetter(sql);

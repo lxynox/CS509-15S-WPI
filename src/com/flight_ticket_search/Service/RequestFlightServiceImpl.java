@@ -379,14 +379,20 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 									.getLongitude()
 									- new AirportAdapter().getAirport(aCityCode)
 											.getLongitude())
-						&& Math.max(Math.abs(new AirportAdapter().getAirport(
+						&& Math.abs(flight.getArrivalAirport().getLongitude()
+								- new AirportAdapter().getAirport(dCityCode).getLongitude()) < Math
+								.abs(new AirportAdapter().getAirport(dCityCode)
+										.getLongitude()
+										- new AirportAdapter().getAirport(aCityCode)
+												.getLongitude())
+							&& Math.max(Math.abs(new AirportAdapter().getAirport(
 								dCityCode).getLatitude()
 								- flight.getArrivalAirport().getLatitude()),
 								Math.abs(Math.abs(new AirportAdapter().getAirport(
 										aCityCode).getLatitude()
 										- flight.getArrivalAirport()
 												.getLatitude()))) < 20) {
-					// Âú×ãÌõ¼þ1£º¾­¶ÈÔÚ¿¿½ü£¬Î³¶È²¨¶¯ < 20
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½Î³ï¿½È²ï¿½ï¿½ï¿½ < 20
 					flightList = (List<Flight>) ((ArrayList<Flight>) unchangedList).clone();
 					flightList.add(flight); //add to flightlist
 
@@ -423,32 +429,38 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 				}
 
 			} else {
-				// |Î³¶È²î| > |¾­¶È²î|
+				// |Î³ï¿½È²ï¿½| > |ï¿½ï¿½ï¿½È²ï¿½|
 				if (Math.abs(flight.getArrivalAirport().getLatitude()
 						- new AirportAdapter().getAirport(aCityCode).getLatitude()) < Math
 							.abs(new AirportAdapter().getAirport(dCityCode)
 									.getLatitude()
 									- new AirportAdapter().getAirport(aCityCode)
 											.getLatitude())
-						&& Math.max(Math.abs(new AirportAdapter().getAirport(
+						&& Math.abs(flight.getArrivalAirport().getLatitude()
+						- new AirportAdapter().getAirport(dCityCode).getLatitude()) < Math
+							.abs(new AirportAdapter().getAirport(dCityCode)
+									.getLatitude()
+									- new AirportAdapter().getAirport(aCityCode)
+											.getLatitude())
+							&& Math.max(Math.abs(new AirportAdapter().getAirport(
 								dCityCode).getLongitude()
 								- flight.getArrivalAirport().getLongitude()),
 								Math.abs(Math.abs(new AirportAdapter().getAirport(
 										aCityCode).getLongitude()
 										- flight.getArrivalAirport()
 												.getLongitude()))) < 20) {
-					// ÂúÐèÌõ¼þ1£ºÎ³¶ÈÔÚ¿¿½ü£¬ ¾­¶È²¨¶¯ < 20
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Î³ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½È²ï¿½ï¿½ï¿½ < 20
 					flightList = (List<Flight>) ((ArrayList<Flight>) unchangedList).clone();
 					flightList.add(flight);
 
-					// ÊÇ·ñÒÑ¾­¸ôÒ¹ÁË
+					// ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Ò¹ï¿½ï¿½
 					if (flight.getArrivalTime().getDate().getDay() == 
 							flightList.get(0).getDepartureTime().getDate().getDay()) {
 						
 						if (flightList.size() < 3) {
 							getAllFlightsHandler(flight.getArrivalAirport()
 									.getCode(), aCityCode, dDate, flightList, 
-									flightListList, isOvernight); // ¸úÔ­ÓÐµÄÊý¾Ýunion
+									flightListList, isOvernight); // ï¿½ï¿½Ô­ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½union
 						}
 						
 					} else if (flight.getArrivalTime().getDate().getDay() - 

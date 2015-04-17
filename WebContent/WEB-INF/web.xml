@@ -4,8 +4,8 @@
     <servlet-name>MyServlet</servlet-name>
     <servlet-class>com.flight_ticket_search.Service.RequestFlightServiceImpl</servlet-class>
     <init-param>
-      <param-name>参数名称</param-name>
-      <param-value>参数值</param-value>
+      <param-name>name</param-name>
+      <param-value>value</param-value>
     </init-param>
   </servlet>
   
@@ -19,8 +19,8 @@
     <servlet-name>MyServlet2</servlet-name>
     <servlet-class>com.flight_ticket_search.Service.SortFlightServiceImpl</servlet-class>
     <init-param>
-      <param-name>参数名称</param-name>
-      <param-value>参数值</param-value>
+      <param-name>name</param-name>
+      <param-value>value</param-value>
     </init-param>
   </servlet>
   
@@ -34,8 +34,8 @@
     <servlet-name>MyServlet3</servlet-name>
     <servlet-class>com.flight_ticket_search.Service.SortRoundFlightServiceImpl</servlet-class>
     <init-param>
-      <param-name>参数名称</param-name>
-      <param-value>参数值</param-value>
+      <param-name>name</param-name>
+      <param-value>value</param-value>
     </init-param>
   </servlet>
   
@@ -48,8 +48,8 @@
     <servlet-name>MyServlet4</servlet-name>
     <servlet-class>com.flight_ticket_search.Service.ReservationServiceImpl</servlet-class>
     <init-param>
-      <param-name>参数名称</param-name>
-      <param-value>参数值</param-value>
+      <param-name>name</param-name>
+      <param-value>value</param-value>
     </init-param>
   </servlet>
   
@@ -62,8 +62,8 @@
     <servlet-name>MyServlet5</servlet-name>
     <servlet-class>com.flight_ticket_search.Service.CheckOrderServiceImpl</servlet-class>
     <init-param>
-      <param-name></param-name>
-      <param-value></param-value>
+      <param-name>name</param-name>
+      <param-value>value</param-value>
     </init-param>
   </servlet>
   

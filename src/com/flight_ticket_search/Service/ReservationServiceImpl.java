@@ -63,9 +63,7 @@ public class ReservationServiceImpl extends HttpServlet implements ReservationSe
 					request.setAttribute("ticketId", ticketId);
 					List<Flight> flightList = new ArrayList<Flight>();
 					for (List<String> sList: purchaseList) { 
-						
 						flightList.add(new FlightDaoImpl().selectFlight(sList.get(0)));
-						
 					}
 					
 					request.setAttribute("flightList", flightList);
@@ -136,9 +134,7 @@ public class ReservationServiceImpl extends HttpServlet implements ReservationSe
 			
 //		    start purchasing the ticket
 			if (purchase(purchaseList)) {
-				
 				new FlightDaoImpl().unlockDB();
-			
 			}
 			
 			rd = request.getRequestDispatcher("thankyou_note.html");
