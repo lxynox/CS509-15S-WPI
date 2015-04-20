@@ -351,7 +351,20 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 //		 create a temporary list for the iteration of each level of tree
 		List<Flight> unchangedList = flightList;
 		
+//		starting and destination longitude and longitude 
+		AirportAdapter adapter = new AirportAdapter();
+		double dLongt = adapter.getAirport(dCityCode).getLongitude();
+		double dLat = adapter.getAirport(dCityCode).getLatitude();
+		double aLongt = adapter.getAirport(aCityCode).getLongitude();
+		double aLat = adapter.getAirport(aCityCode).getLatitude(); 
+		
 		for (Flight flight : dFlightList) {
+//			departure && arrival airport longitude and latitude 
+			double arrivalLongt = flight.getArrivalAirport().getLongitude();
+			double arrivalLat = flight.getArrivalAirport().getLatitude();
+			double departLongt = flight.getDepartureAirport().getLongitude();
+			double departLat = flight.getDepartureAirport().getLatitude();
+			
 //			ending condition:  arrived at the arrival airport 
 			if (flight.getArrivalAirport().getCode().equals(aCityCode)) {
 
@@ -364,38 +377,17 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 				
 //				System.out.println(flightListList);
 
-			} else if (Math.abs(new AirportAdapter().getAirport(dCityCode)
-					.getLongitude()
-					- new AirportAdapter().getAirport(aCityCode).getLongitude()) > Math
-					.abs(new AirportAdapter().getAirport(dCityCode).getLatitude()
-							- new AirportAdapter().getAirport(aCityCode)
-									.getLatitude())) {
+			} else if (Math.abs(dLongt -aLongt) > Math.abs(dLat - aLat)) {
 				/* | diff(long) | > | diff(lat) | */
 				
 				/* long becomes closer, and lat fluctuates less than 20 */
-				if (Math.abs(flight.getArrivalAirport().getLongitude()
-						- new AirportAdapter().getAirport(aCityCode).getLongitude()) < Math
-							.abs(new AirportAdapter().getAirport(dCityCode)
-									.getLongitude()
-									- new AirportAdapter().getAirport(aCityCode)
-											.getLongitude())
-						&& Math.abs(flight.getArrivalAirport().getLongitude()
-								- new AirportAdapter().getAirport(dCityCode).getLongitude()) < Math
-								.abs(new AirportAdapter().getAirport(dCityCode)
-										.getLongitude()
-										- new AirportAdapter().getAirport(aCityCode)
-												.getLongitude())
-							&& Math.max(Math.abs(new AirportAdapter().getAirport(
-								dCityCode).getLatitude()
-								- flight.getArrivalAirport().getLatitude()),
-								Math.abs(Math.abs(new AirportAdapter().getAirport(
-										aCityCode).getLatitude()
-										- flight.getArrivalAirport()
-												.getLatitude()))) < 20) {
+				if (Math.abs(arrivalLongt - aLongt) < Math.abs(dLongt - aLongt)
+						&& Math.abs(arrivalLongt - dLongt) < Math.abs(dLongt - aLongt)
+							&& Math.abs(departLongt - dLongt) < Math.abs(arrivalLongt - dLongt)
+								&& Math.max(Math.abs(dLat - arrivalLat), Math.abs(Math.abs(aLat - arrivalLat))) < 20) {
 					// ��������1�������ڿ�����γ�Ȳ��� < 20
 					flightList = (List<Flight>) ((ArrayList<Flight>) unchangedList).clone();
 					flightList.add(flight); //add to flightlist
-
 //					 whether over night ?
 //					if same day: only requirement is - no more than two stops = flightList.size() <= 3
 					if (flight.getArrivalTime().getDate().getDay() == 
@@ -430,25 +422,10 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 
 			} else {
 				// |γ�Ȳ�| > |���Ȳ�|
-				if (Math.abs(flight.getArrivalAirport().getLatitude()
-						- new AirportAdapter().getAirport(aCityCode).getLatitude()) < Math
-							.abs(new AirportAdapter().getAirport(dCityCode)
-									.getLatitude()
-									- new AirportAdapter().getAirport(aCityCode)
-											.getLatitude())
-						&& Math.abs(flight.getArrivalAirport().getLatitude()
-						- new AirportAdapter().getAirport(dCityCode).getLatitude()) < Math
-							.abs(new AirportAdapter().getAirport(dCityCode)
-									.getLatitude()
-									- new AirportAdapter().getAirport(aCityCode)
-											.getLatitude())
-							&& Math.max(Math.abs(new AirportAdapter().getAirport(
-								dCityCode).getLongitude()
-								- flight.getArrivalAirport().getLongitude()),
-								Math.abs(Math.abs(new AirportAdapter().getAirport(
-										aCityCode).getLongitude()
-										- flight.getArrivalAirport()
-												.getLongitude()))) < 20) {
+				if (Math.abs(arrivalLat - aLat) < Math.abs(dLat - aLat)
+						&& Math.abs(arrivalLat - dLat) < Math.abs(dLat - aLat)
+							&& Math.abs(departLat - dLat) < Math.abs(arrivalLat - dLat)
+								&& Math.max(Math.abs(dLongt - arrivalLongt), Math.abs(Math.abs(aLongt - arrivalLongt))) < 20) {
 					// ��������1��γ���ڿ����� ���Ȳ��� < 20
 					flightList = (List<Flight>) ((ArrayList<Flight>) unchangedList).clone();
 					flightList.add(flight);
