@@ -14,9 +14,7 @@ import com.flight_ticket_search.Entity.Flight;
 
 public interface FlightDao {
 
-	// public void addFlight();
 
-	// public void updateFlight();
 	/**
 	 * Return list of Flights retrieved from database
 	 * 

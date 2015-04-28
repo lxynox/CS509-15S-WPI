@@ -103,7 +103,15 @@ public class FlightDaoImpl implements FlightDao {
 	@Override
 	public Flight selectFlight(String number) {
 		// TODO Auto-generated method stub
-		return FlightGetter.getFlight(number);
+		return new FlightGetter().getFlight(number);
+	}
+	
+	/**
+	 * USED FOR TESTING ONLY
+	 * @return code in string format to indicate the operation is succeed or not
+	 */
+	public String resetDB () {
+		return XMLConnector.getInstance().resetDB();
 	}
 
 }

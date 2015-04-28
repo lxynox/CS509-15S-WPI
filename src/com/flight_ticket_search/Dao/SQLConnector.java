@@ -26,11 +26,11 @@ class SQLConnector {
 
 	// JDBC driver name and database URL
 	    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	    private static final String DB_URL = "jdbc:mysql://localhost/my_db?";
+	    private static final String DB_URL = "jdbc:mysql://10.0.1.10/my_db?";
 	    
 //	    JDBC Credentials
-		private static final String USER_NAME = "lxynox";  
-		private static final String PASSWORD = "LXYwpi920817";
+		private static final String USER_NAME = "root";  
+		private static final String PASSWORD = "root";
 		
 		private static SQLConnector instance = null;
 		
@@ -227,7 +227,7 @@ class SQLConnector {
 		public static void main(String[] args) {
 			SQLConnector sqlConnector = new SQLConnector();
 			
-//			System.out.println(sqlConnector.getOrder("team09"));
+			System.out.println(sqlConnector.getOrder("lc"));
 			
 			System.out.println(sqlConnector.getUser("lxynox"));
 			

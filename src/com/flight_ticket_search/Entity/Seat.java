@@ -20,34 +20,59 @@ public class Seat {
 	
 	
 	/* getter && setter */
+	/**
+	 * get the number of first class seats
+	 * @return the number of the first class seats
+	 */
 	public int getFirstClassSeats() {
 		return firstClassSeats;
 	}
-	
+	/**
+	 * get the number of coach seats
+	 * @return the number of coach seats
+	 */
 	public int getCoachSeats() {
 		return coachSeats;
 	}
-	
+	/**
+	 * get the price of first class seats
+	 * @return the price of first class seats
+	 */
 	public double getFirstClassPrice() {
 		return hPrice;
 	}
-	
+	/**
+	 * get the price of the coach class seats
+	 * @return the price of coach seats
+	 */
 	public double getCoachPrice() {
 		return lPrice;
 	}
-	
+	/**
+	 * set the number of the first class seats
+	 * @param seats the number of first class seats
+	 */
 	public void setFirstClassSeats(int seats) {
 		firstClassSeats = seats;
 	}
-	
+	/**
+	 * set the number of coach seats 
+	 * @param seats the number of coach seats
+	 */
 	public void setCoachSeats(int seats) {
 		coachSeats = seats;
 	}
-	
+	/**
+	 * set the price of first class seats
+	 * @param price price of first class seats
+	 */
 	public void setFirstClassPrice(double price) {
 		hPrice = price;
 	}
-	
+	/**
+	 * set the price of coach seats
+	 * @param price the price of coach seats
+	 */
 	public void setCoachPrice(double price) {
 		lPrice = price;
 	}

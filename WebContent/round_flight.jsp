@@ -755,10 +755,10 @@ $(document).ready(function() {
 	
 	$("#ticket_info<%= i%>").hover(
 	function() {
-		$(this).css("border", "3px orange solid");
+		$(this).css("border", "5px orange solid");
 	},
 	function() {
-		$(this).css("border", "3px black dotted");
+		$(this).css("border", "3px #cc9900 solid");
 	});
 <%
 	}

@@ -274,9 +274,8 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 	 */
 	@Override
 	public void sortByLeg(List<Ticket> tickets) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 		Collections.sort(tickets, new FlightSortByLeg());
-		
 	}
 	
 	

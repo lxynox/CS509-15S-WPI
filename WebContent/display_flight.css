@@ -2,7 +2,7 @@
 
 body,html {
 	font-family: "Trebuchet MS", Verdana, sans-serif;
-	background-color: black;
+	background-color: white;
 	height: 100%;
 	#background-color: #4682B4;
 }
@@ -24,7 +24,7 @@ h3 {
 }
 
 #right {
-	background-color: black;
+	background-color: white;
 	#background-color: #4682B4;
 	height: 1000px;
 }
@@ -45,7 +45,7 @@ h3 {
 }
 .detail_flight_info table tr td {
 	font-size: 1.1em;
-	background-color: cadetblue;
+	#background-color: cadetblue;
 	text-align: center;
 	#background-color: orange;
 }
@@ -64,7 +64,7 @@ h3 {
 }
 
 table tr:nth-child(odd) {
-    background-color: #f1f1f1;
+   # background-color: #f1f1f1;
 }
 
 
@@ -79,13 +79,13 @@ table tr:nth-child(odd) {
 .ticket_info {
 	background-color: cadetblue; 
 	margin: 30px 20px 0 22%;
-	border: black dotted 3px;
+	border: #cc9900 solid 3px;
 	height: 235px;
 }
 
 .detail_flight_info {
-	color: white;
-	background-color: black; 
+	color: black;
+	background-color: white; 
 	margin: 0 20px 0px 22%; 
 	#height: 350px"
 }
@@ -113,7 +113,7 @@ table tr:nth-child(odd) {
 .no_match_hint {
 	margin-top: 10%;
 	text-align: center;
-	color: white;
+	color: black;
 	font-size: 1.4em;
 }
 

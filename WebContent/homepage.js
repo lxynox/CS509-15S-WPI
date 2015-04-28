@@ -82,7 +82,7 @@ var flight = {
 }
 
 $(function() {
-	alert("Welcome to cs509 Team07 online flight ticket reservation system");
+	//alert("Welcome to cs509 Team07 online flight ticket reservation system");
 	$("#header").click(function() {
 		alert("You have clicked on me, auch ~~~ ");
 	});

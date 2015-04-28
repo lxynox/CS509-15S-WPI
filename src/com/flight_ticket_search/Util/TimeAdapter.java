@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.flight_ticket_search.Util;
 
 import java.io.BufferedReader;
@@ -54,6 +51,27 @@ public class TimeAdapter {
 		return  dbDateForm.substring(0, 8) + (day<10? "0"+day:day);
 	}
 	
+	/**
+	 * Return the date according to the user input from the UI
+	 * User has to follow the input rules(specified by the placeholder of input field) 
+	 * to enter a valid date format, if the user does not meet the preconditions of 
+	 * input rules, a new NumberFormatException is thrown
+	 * 
+	 * @param uiDate the date in String format specified by the user
+	 * @return the date according to the user input
+	 * @throws NumberFormatException the given string cannot be parsed
+	 */
+	public Date getDateFromUI (String uiDate) throws NumberFormatException, DateOutOfRangeException {
+		int year = Integer.parseInt (uiDate.substring(0, 4));
+	    int month = Integer.parseInt (uiDate.substring(5, 7));
+	    int day = Integer.parseInt(uiDate.substring(8, 10));
+//	    check whether the date is within the range of 2015,may,08 ~ 2015,may,17
+	    if (year != 2015 || month != 5 || day < 8 || day > 17) {
+	    	throw new DateOutOfRangeException("Valid date range should be from: May, 08, 2015 "
+	    			+ "~ May, 17, 2015 ");
+	    }
+		return new Date(year, month, day);
+	}
 	
 	/**
 	 * Return the offset of a location/Airport with known latitude and longitude
@@ -166,19 +184,4 @@ public class TimeAdapter {
 		
 		return time;
 	}
-	
-	
-	public static void main(String[] args) {
-		/* 
-		Time time = new Time();
-		time.localToGMT("2015-05-10 20:00:00", "America/Los_Angeles");
-		time.localToGMT("2015-05-10 20:00:00", "America/New_York");
-	
-		time.GMTtoLocal("2015-05-10 20:00:00", "America/Los_Angeles");
-		time.GMTtoLocal("2015-05-10 20:00:00", "America/New_York");
-		*/
-		TimeAdapter timer = new TimeAdapter();
-		System.out.println(timer.addOneDay("2015_05_12"));
-	}
-	
 }

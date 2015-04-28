@@ -19,6 +19,7 @@ public class Date {
 	}
 
 	/**
+	 * get the year of the date
 	 * @return the year
 	 */
 	public int getYear() {
@@ -26,6 +27,7 @@ public class Date {
 	}
 
 	/**
+	 * set the year of the date
 	 * @param year the year to set
 	 */
 	public void setYear(int year) {
@@ -33,6 +35,7 @@ public class Date {
 	}
 
 	/**
+	 * get the month of the date
 	 * @return the month
 	 */
 	public int getMonth() {
@@ -40,6 +43,7 @@ public class Date {
 	}
 
 	/**
+	 * set the month of the date
 	 * @param month the month to set
 	 */
 	public void setMonth(int month) {
@@ -47,6 +51,7 @@ public class Date {
 	}
 
 	/**
+	 * get the day of the date
 	 * @return the day
 	 */
 	public int getDay() {
@@ -54,6 +59,7 @@ public class Date {
 	}
 
 	/**
+	 * set the day of the date
 	 * @param day the day to set
 	 */
 	public void setDay(int day) {

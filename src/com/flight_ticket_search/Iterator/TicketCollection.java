@@ -8,7 +8,7 @@ import com.flight_ticket_search.Entity.Ticket;
 /**
  * @author lxybi_000
  * Date: 29, March, 2015
- * Description: Interface to put List<Flight>(one trip tickets) into List of collection
+ * Description: Interface to put List(Flight)(one trip tickets) into List of collection
  * 				using iterator to specify sequence and approach of iteration
  */
 public interface TicketCollection  {
@@ -17,8 +17,7 @@ public interface TicketCollection  {
 	 * Return whether the ticket is successfully added to the collection
 	 * Add the tickets of one whole trip to the TicketCollection 
 	 * 
-	 * @param ticketList list of flight-legs, tickets for one single trip
-	 * 
+	 * @param ticket ticket that contains the global information of the flight-legs
 	 * @return whether the tickets of one trip is successfully added to the 
 	 * 			tickets collection
 	 */
@@ -31,8 +30,7 @@ public interface TicketCollection  {
 	 * Remove the specific tickets (for eg. [flight-leg1, flight-leg2])
 	 *  of one trip from the tickets collection
 	 * 
-	 * @param ticketList list of flight-legs (tickets for one single trip)
-	 * 
+	 * @param ticket ticket that contains the global information of the flight-legs
 	 * @return whether the ticket of one trip is successfully removed from 
 	 * 			the ticket collection
 	 */

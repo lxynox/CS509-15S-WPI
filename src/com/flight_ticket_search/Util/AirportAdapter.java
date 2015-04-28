@@ -1,12 +1,7 @@
-/**
- * 
- */
 package com.flight_ticket_search.Util;
-
 
 import com.flight_ticket_search.Dao.FlightDaoImpl;
 import com.flight_ticket_search.Entity.Airport;
-
 
 /**
  * @author lxybi_000
@@ -16,41 +11,30 @@ public class AirportAdapter {
 	
 	
 	/**
-	 * 
-	 * @param city
-	 * @return
+	 * Return the airport according to the airport code
+	 * @param cityCode US airport code
+	 * @return Airport the right airport according to the valid airport code
 	 */
 	public Airport getAirport(String cityCode) {
 		return new FlightDaoImpl().getAirport(cityCode);
 	}
 	
-		
 	/**
-	 * convert the String city from user input to
-	 * String cityCode which is the format used in db
-	 * @param city
-	 * @return String representation of cityCode
+	 * Return the valid 3 digits US airport code from UI
+	 * Return valid us airport code for flight search, if the input airport 
+	 * code does not match the standard criteria, a new Exception is thrown
+	 * 
+	 * @param uiAirport input airport specified by the user
+	 * @return valid 3 digits US airport code
+	 * @throws InvalidAirportCodeException
 	 */
-	public static String getCode(String city) {
-		if (city.equals("Boston")) {
-			return "BOS";
-		}else if (city.equals("Los Angeles")) {
-			return "LA";
-		}else if (city.equals("New York")) {
-			return "NY";
-		}else {
-			return "Wrong input";
+	public String getAirportCodeFromUI(String uiAirport) throws InvalidAirportCodeException{
+		uiAirport = uiAirport.toUpperCase();
+		if (getAirport(uiAirport) == null) {
+			throw new InvalidAirportCodeException ("Departure/Arrival airport must be 3 digits valid US airports");
 		}
+		return uiAirport;
 	}
-	
-
-	public static void main(String[] args) {
-		System.out.println(new AirportAdapter().getAirport("ATL").toString());
-//		System.out.println(new AirportAdapter().getTimezoneOffset
-//				(new AirportAdapter().getAirport("ATL")));
-	}
-	
-	
 }
 
 

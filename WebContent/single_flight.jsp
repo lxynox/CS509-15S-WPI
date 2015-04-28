@@ -554,10 +554,10 @@ $(document).ready(function() {
 	});
 	
 	$("#ticket_info<%= i%>").hover(function() {
-		$(this).css("border", "solid orange 3px");
+		$(this).css("border", "solid orange 5px");
 	},
 	function() {
-		$(this).css("border", "dotted black 3px");
+		$(this).css("border", "solid #cc9900 3px");
 	});
 	
 	<%

@@ -201,21 +201,5 @@ class XMLConnector {
 		return false;
 	}
 
-	/*
-	 * public static void main(String[] args) { String xmlFlight1 = "<Flights>"
-	 * + "<Flight number=\"2009\" seating=\"Coach\" />" +
-	 * "<Flight number=\"1732\" seating=\"FirstClass\" />" + "</Flights>";
-	 * 
-	 * String xmlFlight2 = "<Flights>" +
-	 * "<Flight number=\"1732\" seating=\"FirstClass\" />" +
-	 * "<Flight number=\"1732\" seating=\"FirstClass\" />" + "</Flights>";
-	 * 
-	 * XMLConnector xc = new XMLConnector(); System.out.println(xmlFlight1);
-	 * System.out.println(xc.getDepartingFlights("BOS","2015_05_15"));
-	 * xc.unlock(); xc.lock(); xc.reserveFlight(xmlFlight1); // xc.unlock();
-	 * xc.reserveFlight(xmlFlight2); // xc.resetDB(); // XMLConnector xc = new
-	 * XMLConnector(); System.out.println(xc.getDepartingFlights("BOS",
-	 * "2015_05_15")); }
-	 */
 
 }

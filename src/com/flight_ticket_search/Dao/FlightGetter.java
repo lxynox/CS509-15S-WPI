@@ -58,7 +58,12 @@ class FlightGetter {
 		return flightList;
 	}
 	
-	public static Flight getFlight(String number) {
+	public Flight getFlight(String number) {
+		Flight flight = flightMap.get(number);
+		String departureCode = flight.getDepartureAirport().getCode();
+		int day = flight.getDepartureTime().getDate().getDay();
+		String date = "2015_05_" + (day < 10? "0":"") + day;
+		parseXML(departureCode, date, true);
 		return flightMap.get(number);
 	}
 	/* XML String parsing */

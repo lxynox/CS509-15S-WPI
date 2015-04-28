@@ -8,19 +8,10 @@
 package com.flight_ticket_search.Dao;
 
 public class XMLConnectorTest {
-	/**
-	 * 1. 写的时候先测试 public方法，因为他们是package内的接口， 是不同class之间沟通的桥梁 2. 写出public
-	 * 方法的测试case， 多用System.out.println()；一般是2-3组输入 对应2-3组输出 3. 测试结果正确 4. 测试结果错误，
-	 * 开始测试public method调用的private方法, 试图debug出错误的地方
-	 * 
-	 */
-	/**
-	 * test for reading data
-	 */
+
 	/* test to get whole list of airports */
 	public void getAirportTest() {
-		// 不要调用 new XMLConnector() 因为private花了， 是singleton design pattern需要，
-		// 用 XMLConnector.getInstance()得到你要的对象， 下面都是这样
+	
 		String airportXMLStrings = XMLConnector.getInstance().getAirports();
 		System.out.println(airportXMLStrings);
 	}

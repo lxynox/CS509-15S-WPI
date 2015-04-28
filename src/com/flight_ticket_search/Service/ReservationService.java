@@ -39,21 +39,21 @@ public interface ReservationService {
 	public boolean checkFlight(List<List<String>> purchaseList);
 	
 	/**
-	 * 
+	 * Return whether the user is successfully added to the database
 	 * @param user
 	 * @return
 	 */
 	public boolean addUser (User user);
 	
 	/**
-	 * 
+	 * Return whether the ticketInfo is successfully added into the database
 	 * @param ticketInfo
 	 * @return
 	 */
 	public boolean addTicket (TicketInfo ticketInfo);
 	
 	/**
-	 * 
+	 * Return whether the order is successfully added into the database
 	 * @param userID
 	 * @param number
 	 * @return

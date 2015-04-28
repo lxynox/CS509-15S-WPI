@@ -1,28 +1,32 @@
-
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import= "java.util.*,
+    		com.flight_ticket_search.Entity.*,
+    		com.flight_ticket_search.Util.*,
+    		com.flight_ticket_search.Service.RequestFlightServiceImpl"
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CS509_Team07 - online flight ticket service</title>
 <link href= "homepage.css" rel= "stylesheet">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
-</script> 		
+</script> 	
 </head>
-
 <body>
+
 
 <div id= "header">
 <h1>Online Flight Reservation System</h1>
 </div>
 
 <div id= "navigator">
-		<h3 style= "float: left; color: white; padding: 10px"><i>CS509 Team07</i></h3>
-	
+	<h3 style= "float: left; color: white; padding: 10px"><i>CS509 Team07</i></h3>
 </div>
-
 
 <br><br><br>
 
-<h2 style= "color: white; font-size: 2em; padding-left: 10px"><bold>Flight<bold></h2> 
+<!-- <h2 style= "color: white; font-size: 2em; padding-left: 10px"><bold>Flight<bold></h2>  -->
 
 <ul class= "trip">    
 	<li><a id= "oneWay" onclick= "ticket.oneWay()">One-way</a></li>
@@ -124,12 +128,26 @@
 <div id= "footer">
 </div>
 
+<%
+	String nullInputErrorMessage = (String) request.getAttribute("nullInput");
+	String invalidInputErrorMessage = (String) request.getAttribute("invalidInput");
+	if (nullInputErrorMessage != null) {
+%>
+<script> alert ("Something is missing, please see bottom of the current page"); </script>	
+<p class = "error_notification"><%= " * " + nullInputErrorMessage %></p>
+<% 		
+	}
+
+	if (invalidInputErrorMessage != null) {
+%>
+<script> alert ("Invalid input, please see bottom of the current page"); </script>
+<p class = "error_notification"><%= " * " + invalidInputErrorMessage %></p>
+<%		
+	}
+%>
 
 <script src= "homepage.js">
 </script>
 
 </body>
 </html>
-
-
-
