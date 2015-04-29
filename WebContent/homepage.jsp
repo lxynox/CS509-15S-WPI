@@ -10,8 +10,281 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CS509_Team07 - online flight ticket service</title>
 <link href= "homepage.css" rel= "stylesheet">
+ <link href= "jquery-ui.min.js" rel= "stylesheet">
+<link href="jquery-ui.css" rel="stylesheet">
+<link href="jquery-1.11.2.js" rel="stylesheet">
+ 
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
-</script> 	
+</script> 
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+ <script > /*time*/
+function getCurrentTime(){
+    var now = new Date();
+    var time=document.getElementById("showTime").value;
+    time=now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate();
+    time+=" "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
+     document.getElementById("showTime").innerHTML=time;
+    }
+    window.setInterval("getCurrentTime()",1000);
+</script>
+  
+<script>	/* autocomplete */
+$(function() {
+    var availableTags = [
+      "ATL",
+      "ANC",
+      "BWI",
+      "BOS",
+      "CLT",
+      "MDW",
+      "ORD",
+      "CVG",
+      "CLE",
+      "CMH",
+      "DFW",
+      "DEN",
+      "DTW",
+      "FLL",
+      "RSW",
+      "BDL",
+      "HNL",
+      "IAH",
+      "HOU",
+      "IND",
+      "MCI",
+	  "LAS",
+	  "LAX",
+	  "MEM",
+	  "MIA",
+	  "MSP",
+	  "BNA",
+	  "MSY",
+	  "JFK",
+	  "LGA",
+	  "EWR",
+	  "OAK",
+	  "ONT",
+	  "MCO",
+	  "PHL",
+	  "PHX",
+	  "PIT",
+	  "PDX",
+	  "RDU",
+	  "SMF",
+	  "SLC",
+	  "SAT",
+	  "SAN",
+	  "SFO",
+	  "SJC",
+	  "SNA",
+	  "SEA",
+	  "STL",
+	  "TPA",
+	  "IAD",
+	  "DCA"
+	  
+	    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+	
+  });
+</script>
+<script>	/* autocomplete */
+$(function() {
+    var availableTags = [
+      "ATL",
+      "ANC",
+      "BWI",
+      "BOS",
+      "CLT",
+      "MDW",
+      "ORD",
+      "CVG",
+      "CLE",
+      "CMH",
+      "DFW",
+      "DEN",
+      "DTW",
+      "FLL",
+      "RSW",
+      "BDL",
+      "HNL",
+      "IAH",
+      "HOU",
+      "IND",
+      "MCI",
+	  "LAS",
+	  "LAX",
+	  "MEM",
+	  "MIA",
+	  "MSP",
+	  "BNA",
+	  "MSY",
+	  "JFK",
+	  "LGA",
+	  "EWR",
+	  "OAK",
+	  "ONT",
+	  "MCO",
+	  "PHL",
+	  "PHX",
+	  "PIT",
+	  "PDX",
+	  "RDU",
+	  "SMF",
+	  "SLC",
+	  "SAT",
+	  "SAN",
+	  "SFO",
+	  "SJC",
+	  "SNA",
+	  "SEA",
+	  "STL",
+	  "TPA",
+	  "IAD",
+	  "DCA"
+	  
+	    ];
+    $( "#tags1" ).autocomplete({
+      source: availableTags
+    });
+	
+  });
+  
+</script>
+<script>	/* autocomplete */
+$(function() {
+    var availableTags = [
+      "ATL",
+      "ANC",
+      "BWI",
+      "BOS",
+      "CLT",
+      "MDW",
+      "ORD",
+      "CVG",
+      "CLE",
+      "CMH",
+      "DFW",
+      "DEN",
+      "DTW",
+      "FLL",
+      "RSW",
+      "BDL",
+      "HNL",
+      "IAH",
+      "HOU",
+      "IND",
+      "MCI",
+	  "LAS",
+	  "LAX",
+	  "MEM",
+	  "MIA",
+	  "MSP",
+	  "BNA",
+	  "MSY",
+	  "JFK",
+	  "LGA",
+	  "EWR",
+	  "OAK",
+	  "ONT",
+	  "MCO",
+	  "PHL",
+	  "PHX",
+	  "PIT",
+	  "PDX",
+	  "RDU",
+	  "SMF",
+	  "SLC",
+	  "SAT",
+	  "SAN",
+	  "SFO",
+	  "SJC",
+	  "SNA",
+	  "SEA",
+	  "STL",
+	  "TPA",
+	  "IAD",
+	  "DCA"
+	  
+	    ];
+    $( "#tags2" ).autocomplete({
+      source: availableTags
+    });
+	
+  });
+</script>
+<script>	/* autocomplete */
+$(function() {
+    var availableTags = [
+      "ATL",
+      "ANC",
+      "BWI",
+      "BOS",
+      "CLT",
+      "MDW",
+      "ORD",
+      "CVG",
+      "CLE",
+      "CMH",
+      "DFW",
+      "DEN",
+      "DTW",
+      "FLL",
+      "RSW",
+      "BDL",
+      "HNL",
+      "IAH",
+      "HOU",
+      "IND",
+      "MCI",
+	  "LAS",
+	  "LAX",
+	  "MEM",
+	  "MIA",
+	  "MSP",
+	  "BNA",
+	  "MSY",
+	  "JFK",
+	  "LGA",
+	  "EWR",
+	  "OAK",
+	  "ONT",
+	  "MCO",
+	  "PHL",
+	  "PHX",
+	  "PIT",
+	  "PDX",
+	  "RDU",
+	  "SMF",
+	  "SLC",
+	  "SAT",
+	  "SAN",
+	  "SFO",
+	  "SJC",
+	  "SNA",
+	  "SEA",
+	  "STL",
+	  "TPA",
+	  "IAD",
+	  "DCA"
+	  
+	    ];
+    $( "#tags3" ).autocomplete({
+      source: availableTags
+    });
+	
+  });
+</script>
+	
 </head>
 <body>
 
@@ -43,11 +316,12 @@
 	    <legend>Flight Ticket</legend>
 		<div class= "single_div">
 			<p><b>FROM</b></p>
-            <input class= "single_ticket_input" type= "text" placeholder= "BOS for Boston" name= "departureCity">
+			
+            <input id="tags" class= "single_ticket_input" type= "text" placeholder= "BOS for Boston" name= "departureCity">
 		</div>
 		<div class= "single_div">
 			<p><b>TO</b></p>
-	        <input class= "single_ticket_input" type= "text" placeholder= "LAX for Los Angeles" name= "arrivalCity">
+	        <input id="tags1" class= "single_ticket_input" type= "text" placeholder= "LAX for Los Angeles" name= "arrivalCity">
         </div>
 		<div class= "single_div">
 			<p><b>Departing</b></p>
@@ -77,11 +351,11 @@
 	    <legend>Flight Ticket</legend>
 		<div class= "round_div">
 		    <p><b>FROM</b></p>
-            <input class= "round_ticket_input" type= "text" placeholder= "LAX for Los Angeles" name = "departureCity">
+            <input id="tags2" class= "round_ticket_input" type= "text" placeholder= "LAX for Los Angeles" name = "departureCity">
 		</div>
 		<div class= "round_div">
 		    <p><b>TO</b></p>
-	        <input class= "round_ticket_input" type= "text"  placeholder= "BOS for Boston" name = "arrivalCity">
+	        <input id="tags3" class= "round_ticket_input" type= "text"  placeholder= "BOS for Boston" name = "arrivalCity">
 		</div>
 		<div class= "round_div">
 			<p><b>Seating</b></p>
@@ -124,7 +398,7 @@
 	  </fieldset>
 	</form><br><br>
 </div>
-
+<div id="time" >Time:<span id="showTime"></span></div>
 <div id= "footer">
 </div>
 

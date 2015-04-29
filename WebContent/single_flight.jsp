@@ -10,13 +10,66 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <title> Single Trip Page </title>
-
+ <link href= "jquery-ui.min.js" rel= "stylesheet">
+<link href="jquery-ui.css" rel="stylesheet">
   <link rel="shortcut icon" href="http://designm.ag/favicon.ico">
   <link rel="icon" href="http://designm.ag/favicon.ico">
   <link href= "display_flight.css" rel= "stylesheet">
   <link rel="stylesheet" type="text/css" media="all" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+  <style>
+	body{
+		font: 100% "Trebuchet MS", sans-serif;
+		line-height: 120%;
+	}
+	.demoHeaders {
+		margin-top: 2em;
+	}
+	#dialog-link {
+		padding: .4em 1em .4em 20px;
+		text-decoration: none;
+		position: relative;
+	}
+	#dialog-link span.ui-icon {
+		margin: 0 5px 0 0;
+		position: absolute;
+		left: .2em;
+		top: 50%;
+		margin-top: -8px;
+	}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+	select {
+		width: 200px;
+	}
+	</style>
+     <script type="text/javascript"> 
+$(function() { 
+$(window).scroll(function() { 
+var top = $(window).scrollTop(); 
+var left= $(window).scrollLeft(); 
+$("#left").css({ left:left + "px", top: top + "px" }); 
+}); 
+}); 
+</script>
 </head>
 <body>
 
@@ -25,15 +78,15 @@
 
 <div id= "main">
 	
-	<div id= "left">
-		<p>Ticket Filter</p>
+	<div id= "left"style="float:left;position:absolute;font-size:14px;line-height: 5px;">
+		<p style="font-size:18px;"><strong>Ticket Filter</strong></p>
 
 		<form method= "get" action= "sortServlet">
 	
 			<div class= "filter_window">
 				<h3>Stops</h3>
 				<div id= "stop" class= "filter_content">
-					<input type= "checkbox" name= "nonestop" checked= "checked">none stop<br>
+					<input type= "checkbox" name= "nonestop" checked= "checked">none stop
 					<input type= "checkbox" name= "onestop" checked= "checked">one stop<br>
 					<input type= "checkbox" name= "multistop" checked= "checked">multi stops<br>
 					<br>
@@ -77,9 +130,7 @@
 			tickItr1 = (TicketIterator) request.getAttribute("ticketIterator");
 			
 %>
-<script>			
-			alert("Welcome to the second page - selecting flight tickets!");
-</script>	
+
 <%			
 		}
 		
@@ -203,7 +254,7 @@
 				</div>
 				
 				<!--  filtering button here to start filtering -->
-				<input type= "submit" style= "margin:100px 50% 10px; width: 45%; height: 50px"
+				<input type= "submit" style= "margin: 50px 50% 10px; width: 45%; height: 20px" 
 					name= "filter_button" value= "start filtering">
 			</div>
 
@@ -225,9 +276,15 @@
 <%
 		if (ticketList.size() == 0) {
 %>
-		<p class= "no_match_hint">
+		<!-- <p class= "no_match_hint">
 			: ( <i>Sorry, no matching result has been found, change filtering ?</i> 
-		</p> 	
+		</p> 	 -->
+			<div class="ui-widget">
+<div class="ui-state-error ui-corner-all" style="margin-top: 120px; padding: 0 .7em;text-align:center;">
+<p><span class=" ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+<strong>Sorry,</strong> no matching result has been found, change filtering ?</p>
+</div>
+</div>
 <%			
 		}
 		//Iterating through ALL the ticket type in the collection
@@ -569,5 +626,7 @@ $(document).ready(function() {
 </script>
 <script src= "display_flight.js">
 </script>
+<script src="external/jquery/jquery.js"></script>
+<script src="jquery-ui.js"></script>
 
 </html>

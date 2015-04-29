@@ -141,4 +141,5 @@ $(function() {
 	
 });
 
-document.getElementById("footer").innerHTML = "<p>@copy, "+ new Date()+ "cs509_team07, All rights reserved.</p>";
+document.getElementById("footer").innerHTML = "<p>@copy, " + "cs509_team07, All rights reserved.</p>";
+
