@@ -1,14 +1,15 @@
+/**
+ * @author lxybi_000
+ * @Date: march, 20, 2015
+ * Description: This class is used for converting the airport code to 
+ * 				airport entity and to check/validate airport code from UI
+ */
 package com.flight_ticket_search.Util;
 
 import com.flight_ticket_search.Dao.FlightDaoImpl;
 import com.flight_ticket_search.Entity.Airport;
 
-/**
- * @author lxybi_000
- *
- */
 public class AirportAdapter {
-	
 	
 	/**
 	 * Return the airport according to the airport code

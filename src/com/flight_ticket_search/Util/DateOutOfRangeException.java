@@ -1,25 +1,17 @@
 /**
- * 
+ * @author: lxynox
+ * @date: march, 20, 2015
+ * Description: created to throw exception when the user input date is 
+ * 				not within the range of May,08,2015 ~ May,17,2015
  */
 package com.flight_ticket_search.Util;
 
-/**
- * @author lxynox
- *
- */
 public class DateOutOfRangeException extends Exception {
 
-	/**
-	 * constructor for this class without parameter
-	 */
 	public DateOutOfRangeException() {
 		// TODO Auto-generated constructor stub
 	}
-
-	/**
-	 * constructor with parameter
-	 * @param message used to be retrieved later by the throwable instance
-	 */
+	
 	public DateOutOfRangeException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub

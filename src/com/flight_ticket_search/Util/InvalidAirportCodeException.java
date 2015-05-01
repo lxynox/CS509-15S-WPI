@@ -1,25 +1,17 @@
 /**
- * 
+ * @author: lxynox
+ * @date: march, 20, 2015
+ * Description: created to throw exception when the airport code 
+ * 				from user input is not valid three digit us airport code
  */
 package com.flight_ticket_search.Util;
 
-/**
- * @author lxynox
- *
- */
 public class InvalidAirportCodeException extends Exception {
-	
-	/**
-	 * constructor without parameter
-	 */
+
 	public InvalidAirportCodeException () {
 		
 	}
 	
-	/**
-	 * Constructor with message string
-	 * @param message could be retrieved later by the throwable instance
-	 */
 	public InvalidAirportCodeException (String message) {
 		super (message);
 	}

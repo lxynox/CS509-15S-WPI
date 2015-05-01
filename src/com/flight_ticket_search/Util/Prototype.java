@@ -1,5 +1,6 @@
 /**
- * 
+ * @author lxybi_000
+ *
  */
 package com.flight_ticket_search.Util;
 
@@ -14,11 +15,6 @@ import java.util.Map;
 import com.flight_ticket_search.Dao.FlightDaoImpl;
 import com.flight_ticket_search.Entity.Flight;
 
-
-/**
- * @author lxybi_000
- *
- */
 public class Prototype {
 	FlightDaoImpl flightDao = new FlightDaoImpl();
 	

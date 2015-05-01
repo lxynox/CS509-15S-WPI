@@ -1,3 +1,9 @@
+/**
+ * @author lxybi_000
+ * Date: April, 10, 2015
+ * Description: UserDaoImpl implements the interface of UserDao 
+ * for interaction with the logic/business layer
+ */
 
 package com.flight_ticket_search.Dao;
 
@@ -6,12 +12,6 @@ import java.util.List;
 import com.flight_ticket_search.Entity.TicketInfo;
 import com.flight_ticket_search.Entity.User;
 
-/**
- * @author lxybi_000
- * Date: April, 10, 2015
- * Description: UserDaoImpl implements the interface of UserDao 
- * for interaction with the logic/business layer
- */
 public class UserDaoImpl implements UserDao {
 
 	@Override

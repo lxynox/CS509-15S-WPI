@@ -1,21 +1,20 @@
+/**
+ * @author lxybi_000
+ * @date  march, 25, 2015
+ * Description: mainly used to convert time from GMT -> Local, retrieve local time,
+ * 			and check if the date input from UI is valid or not 
+ */
 package com.flight_ticket_search.Util;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -25,12 +24,8 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.flight_ticket_search.Entity.Time;
-import com.flight_ticket_search.Entity.Date;
 
-/**
- * @author lxybi_000
- *
- */
+import com.flight_ticket_search.Entity.Date;
 public class TimeAdapter {
 	
 	/**
@@ -148,7 +143,6 @@ public class TimeAdapter {
 		return 0;
 	}
 	
-	
 	/**
 	 * Return the local time given the GMT time and its offset
 	 * The returned time should be a new Time instance that should
@@ -157,7 +151,7 @@ public class TimeAdapter {
 	 * 
 	 * @param gmtTime of the flight legs retrieved from the database
 	 * @param offset of the given departure/arrival airport of the flight leg
-	 * @return
+	 * @return new local time entity
 	 */
 	public Time getLocalTime(Time gmtTime, int offset) {
 		

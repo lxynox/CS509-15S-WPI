@@ -16,56 +16,38 @@ import com.flight_ticket_search.Entity.Ticket;
 
 public class SortRoundFlightServiceImpl extends HttpServlet 
 								implements SortRoundFlightService{
-
-	
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
-		
-		
 		// storing global value for filtering 
 		List<List<Ticket>> tickListList = (List<List<Ticket>>) request.getSession().
 								getAttribute("roundTickets");
-		
 		// retrieve current request scope value for sorting
 		List<List<Ticket>> filteredListList = (List<List<Ticket>>) request.getSession().
 								getAttribute("filteredListList");
-		
 		String sortType = request.getParameter("sort_type");
-		
 		
 		/* section for filtering */
 		List<List<Ticket>> filterListList = new ArrayList<List<Ticket>>();
 		if (request.getParameter("filter_button") != null) {
-			
 			// First the seating filter
 			if (request.getParameter("coach") != null) {
 				if (request.getParameter("coach").equals("on")) {
-					
 					for (List<Ticket> tickList: tickListList) {
 						if (tickList.get(0).getSeatType().equals("COACH")
 								&& tickList.get(1).getSeatType().equals("COACH")) {
-							
 							filterListList.add(tickList);
 						}
 					}
-					
 				}
 			}
 			
 			if (request.getParameter("firstclass") != null) {
 				if (request.getParameter("firstclass").equals("on")) {
-					
 					for (List<Ticket> tickList: tickListList) {
 						if (tickList.get(0).getSeatType().equals("FIRSTCLASS")
 								&& tickList.get(1).getSeatType().equals("FIRSTCLASS")) {
-							
 							filterListList.add(tickList);
 						}
 					}
@@ -74,52 +56,40 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 			
 			if (request.getParameter("mixed") != null) {
 				if (request.getParameter("mixed").equals("on")) {
-					
 					for (List<Ticket> tickList: tickListList) {
 						if (tickList.get(0).getSeatType().equals("MIXED")
 								|| tickList.get(1).getSeatType().equals("MIXED")) {
-							
 							filterListList.add(tickList);
 						}
 					}
-					
 				}
 			}
 			
-			
 			// next the stop filter
 			List<List<Ticket>> filterListList2 = new ArrayList<List<Ticket>>();
-			
 			if (request.getParameter("nonestop") != null) {
 				if (request.getParameter("nonestop").equals("on")) {
-					
 					for (List<Ticket> tickList: filterListList) {
 						if (tickList.get(0).getStopType().equals("none stop")
 								&& tickList.get(1).getStopType().equals("none stop")) {
-							
 							filterListList2.add(tickList);
 						}
 					}
-					
 				}
 			}
 			
 			if (request.getParameter("onestop") != null) {
 				if (request.getParameter("onestop").equals("on")) {
-					
 					for (List<Ticket> tickList: filterListList) {
 						if (tickList.get(0).getStopType().equals("one stop")
 								|| tickList.get(1).getStopType().equals("one stop")) {
-							
 							filterListList2.add(tickList);
 						}
 					}
-					
 				}
 			}
 	
 			/* section for window filtering, takeOff/landing, duration */
-			
 			List<List<Ticket>> filterListList3 = new ArrayList<List<Ticket>>();
 			if (filterListList2.size() > 0) {
 				int takeOffMin = filterListList2.size() *
@@ -145,7 +115,6 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 				int takeOffMax = filterListList4.size() *
 						Integer.parseInt(request.getParameter("returnTakeOffMax"))/100;
 				filterListList5 = filterByReturnTakeOff(filterListList4, takeOffMin, takeOffMax);
-				
 			}
 			
 			List<List<Ticket>> filterListList6 = new ArrayList<List<Ticket>>();
@@ -156,61 +125,46 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 						Integer.parseInt(request.getParameter("returnLandingMax"))/100;
 				filterListList6 = filterByReturnLanding(filterListList5, landingMin, landingMax);
 			}
-			
 			request.setAttribute("sortedListList", filterListList6);
-
 		}
 		
-		
 		/* section for sorting */
-		if (sortType != null) {
-			
+		if (sortType != null) {	
 			switch (sortType) {
-			
 				case "price":
-					
 					sortByPrice(filteredListList);
 					break;
 					
 				case "duration":
-					
 					sortByDuration(filteredListList);
 					break;
 					
 				case "depart_takeoff":
-					
 					sortByDepartureTakeOff(filteredListList);
 					break;
 					
 				case "return_takeoff":
-					
 					sortByReturnTakeOff(filteredListList);
 					break;
 					
 				case "depart_landing":
-					
 					sortByDepartureLanding(filteredListList);
 					break;
 					
 				case "return_landing":
-					
 					sortByReturnLanding(filteredListList);
 					break;
 					
 				case "layover":
-					
 					sortByLayover(filteredListList);
 					break;
 					
 				default:
-					
 					break;
 			}
 			
 			request.setAttribute("sortedListList", filteredListList);
-		
 		}
-		
 		RequestDispatcher rd = null;
 		rd = request.getRequestDispatcher("round_flight.jsp");
 		rd.forward(request, response);
@@ -221,9 +175,7 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
-	
-	
+
 	/* (non-Javadoc)
 	 * @see com.flight_ticket_search.Service.SortRoundFlightService#sortByPrice(java.util.List)
 	 */
@@ -280,7 +232,6 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 		Collections.sort(ticketListList, new ReturnLandingComparator());
 	}
 	
-
 	/* (non-Javadoc)
 	 * @see com.flight_ticket_search.Service.SortRoundFlightService#sortByLayover(java.util.List)
 	 */
@@ -290,7 +241,7 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 		Collections.sort(ticketListList, new LayoverComparator());
 	}
 	
-	public class PriceComparator implements Comparator<List<Ticket>> {
+	private class PriceComparator implements Comparator<List<Ticket>> {
 
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
@@ -304,7 +255,7 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 		
 	}
 
-	public class DurationComparator implements Comparator<List<Ticket>> {
+	private class DurationComparator implements Comparator<List<Ticket>> {
 
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
@@ -320,7 +271,7 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 		
 	}
 	
-	public class DepartureTakeOffComparator implements Comparator<List<Ticket>> {
+	private class DepartureTakeOffComparator implements Comparator<List<Ticket>> {
 
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
@@ -348,12 +299,10 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 				return o1.get(0).getTakeOffTime().getDate().getDay() -
 						o2.get(0).getTakeOffTime().getDate().getDay();
 			}
-	
 		}
-		
 	}
 	
-	public class DepartureLandingComparator implements Comparator<List<Ticket>> {
+	private class DepartureLandingComparator implements Comparator<List<Ticket>> {
 
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
@@ -386,7 +335,7 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 		
 	}
 	
-	public class ReturnTakeOffComparator implements Comparator<List<Ticket>> {
+	private class ReturnTakeOffComparator implements Comparator<List<Ticket>> {
 
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
@@ -419,7 +368,7 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 		
 	}
 	
-	public class ReturnLandingComparator implements Comparator<List<Ticket>> {
+	private class ReturnLandingComparator implements Comparator<List<Ticket>> {
 
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
@@ -451,8 +400,7 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 		
 	}
 	
-
-	public class LayoverComparator implements Comparator<List<Ticket>> {
+	private class LayoverComparator implements Comparator<List<Ticket>> {
 
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
@@ -468,8 +416,6 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 		
 	}
 	
-	
-
 	/* (non-Javadoc)
 	 * @see com.flight_ticket_search.Service.SortRoundFlightService#filterByDepartureTakeOff(java.util.List, int, int)
 	 */
@@ -492,7 +438,6 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 		sortByReturnTakeOff(ticketListList);
 		return new ArrayList<List<Ticket>>(ticketListList.subList(minIndex, maxIndex));
 	}
-
 	/* (non-Javadoc)
 	 * @see com.flight_ticket_search.Service.SortRoundFlightService#filterByDepartureLanding(java.util.List, int, int)
 	 */
@@ -504,7 +449,6 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 		return new ArrayList<List<Ticket>>(ticketListList.subList(minIndex, maxIndex));
 	
 	}
-
 	/* (non-Javadoc)
 	 * @see com.flight_ticket_search.Service.SortRoundFlightService#filterByReturnLanding(java.util.List, int, int)
 	 */
@@ -516,5 +460,4 @@ public class SortRoundFlightServiceImpl extends HttpServlet
 		return new ArrayList<List<Ticket>>(ticketListList.subList(minIndex, maxIndex));
 	
 	}
-	
 }

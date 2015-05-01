@@ -11,10 +11,6 @@ import com.flight_ticket_search.Entity.User;
  
  
 public class QueryFactory {
-        /** constructor for QueryFactory class
-         */
-        public QueryFactory() {}
-        
         /**
          * Return query parameter to retrieve airport from database
          * 
@@ -101,8 +97,7 @@ public class QueryFactory {
             return "team=" + team + "&action=list&list_type=arriving&airport="+ code+ "&day="+ d;
         }
  
-        
-        
+        /** Below are additional sub system of checking order for the user */       
         /* User and Ticket Information */
     	public static String addUser(User user) {
     		return "insert into user values('" + 
@@ -126,7 +121,6 @@ public class QueryFactory {
     		return "insert into orders values('" + 
     				userID + "','" +
     				number + "')";
-    		
     	}
     	
     	public static String getOrder (String userID) {
@@ -137,7 +131,6 @@ public class QueryFactory {
     	public static String deleteOrder (String number) {
     		return "delete from orders where number = " + number;
     	}
-    	
     	
     	public static String getUser (String userID) {
     		return "select id, first_name, last_name from user where id = '" + userID + "'";

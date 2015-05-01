@@ -21,8 +21,11 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
  <style>
 	body{
-		font: 100% "Trebuchet MS", sans-serif;
-		line-height: 120%;
+		font: 90% "Trebuchet MS", sans-serif;
+		
+	}
+	h3{
+	padding:2px;
 	}
 	.demoHeaders {
 		margin-top: 2em;
@@ -205,42 +208,42 @@ $("#left").css({ left:left + "px", top: top + "px" });
 						<input type= "hidden" id= "return_take_off_max" name= "returnTakeOffMax" value= "100">
 					</div>
 					
-					<p id= "landing_hinter" style= "padding: 20px">Landing Below</p>
-					
-					<div id= "landing_filter" style= "display: none">
-						<p>Departure Landing time</p>
-						<p>
-						<%= (reqTickListList.size() > 0)? 
-								("May," + timeAdapter.getLocalTime(departureLandingLow, departureLandingOffset).getDate().getDay() + " " +
-										timeAdapter.getLocalTime(departureLandingLow, departureLandingOffset).getHour() 
-										+ "h ~ " +
-								 "May," + timeAdapter.getLocalTime(departureLandingHigh, departureLandingOffset).getDate().getDay() + " " +
-									timeAdapter.getLocalTime(departureLandingHigh, departureLandingOffset).getHour() + "h") 
-									: 	"No matching result"
-						
-						%>
-						</p>
-						<span id="depart_landing_rangeval" class= "slider_range">range: 0% - 100%</span>
-						<div id="depart_landing_slider" class= "slider"></div>
-						<input type= "hidden" id= "depart_landing_min" name="departLandingMin" value= "0">
-						<input type= "hidden" id= "depart_landing_max" name= "departLandingMax" value= "100">
-						
-						<p>Return Landing time</p>
-						<p>
-						<%= (reqTickListList.size() > 0)? 
-								("May," + timeAdapter.getLocalTime(returnLandingLow, departureTakeOffOffset).getDate().getDay() + " " +
-										timeAdapter.getLocalTime(returnLandingLow, departureTakeOffOffset).getHour() 
-										+ "h ~ " +
-								 "May," + timeAdapter.getLocalTime(returnLandingHigh, departureTakeOffOffset).getDate().getDay() + " " +
-									timeAdapter.getLocalTime(returnLandingHigh, departureTakeOffOffset).getHour() + "h") 
-									: 	"No matching result"
-						
-						%>
-						</p>
-						<span id="return_landing_rangeval" class= "slider_range">range: 0% - 100%</span>
-						<div id="return_landing_slider" class= "slider"></div>
-						<input type= "hidden" id= "return_landing_min" name="returnLandingMin" value= "0">
-						<input type= "hidden" id= "return_landing_max" name= "returnLandingMax" value= "100">				</div>
+					<div id= "landing_hinter" style= "padding: 20px">Landing Below
+						<div id= "landing_filter" style= "display: none">
+							<p>Departure Landing time</p>
+							<p>
+							<%= (reqTickListList.size() > 0)? 
+									("May," + timeAdapter.getLocalTime(departureLandingLow, departureLandingOffset).getDate().getDay() + " " +
+											timeAdapter.getLocalTime(departureLandingLow, departureLandingOffset).getHour() 
+											+ "h ~ " +
+									 "May," + timeAdapter.getLocalTime(departureLandingHigh, departureLandingOffset).getDate().getDay() + " " +
+										timeAdapter.getLocalTime(departureLandingHigh, departureLandingOffset).getHour() + "h") 
+										: 	"No matching result"
+							
+							%>
+							</p>
+							<span id="depart_landing_rangeval" class= "slider_range">range: 0% - 100%</span>
+							<div id="depart_landing_slider" class= "slider"></div>
+							<input type= "hidden" id= "depart_landing_min" name="departLandingMin" value= "0">
+							<input type= "hidden" id= "depart_landing_max" name= "departLandingMax" value= "100">
+							
+							<p>Return Landing time</p>
+							<p>
+							<%= (reqTickListList.size() > 0)? 
+									("May," + timeAdapter.getLocalTime(returnLandingLow, departureTakeOffOffset).getDate().getDay() + " " +
+											timeAdapter.getLocalTime(returnLandingLow, departureTakeOffOffset).getHour() 
+											+ "h ~ " +
+									 "May," + timeAdapter.getLocalTime(returnLandingHigh, departureTakeOffOffset).getDate().getDay() + " " +
+										timeAdapter.getLocalTime(returnLandingHigh, departureTakeOffOffset).getHour() + "h") 
+										: 	"No matching result"
+							
+							%>
+							</p>
+							<span id="return_landing_rangeval" class= "slider_range">range: 0% - 100%</span>
+							<div id="return_landing_slider" class= "slider"></div>
+							<input type= "hidden" id= "return_landing_min" name="returnLandingMin" value= "0">
+							<input type= "hidden" id= "return_landing_max" name= "returnLandingMax" value= "100">				</div>
+					</div>
 				</div>
 			</div>
 		
@@ -248,14 +251,14 @@ $("#left").css({ left:left + "px", top: top + "px" });
 			<div id= "seat" class= "filter_window">
 				<h3>Cabin</h3>
 				<div class= "filter_content">
-					<input type= "checkbox" name= "coach" checked= "checked">Coach<br>
+					<input type= "checkbox" name= "coach" checked= "checked">Coach
 					<input type= "checkbox" name= "firstclass" checked= "checked">First Class<br>
 					<input type= "checkbox" name= "mixed" checked= "checked">Mixed<br>
-					<br>
+					
 				</div>
 			
 			<!-- Filter button to invoke filtering service -->
-			<input type= "submit" style= "margin: 50px 50% 10px; width: 45%; height: 20px" 
+		<input type= "submit" style= "margin: 0px 50% 2px; width: 35%; height: 25px" 
 					name= "filter_button" value= "start filtering">
 			
 			</div>
@@ -807,8 +810,12 @@ $(document).ready(function() {
 		$("#detail_flight_info<%= i%>").slideToggle(50);
 	});
 	
-	$("#landing_hinter").hover(function() {
+	$("#landing_hinter").hover(
+	function() {
 		$("#landing_filter").slideDown(500);
+	},
+	function() {
+		$("#landing_filter").slideUp(500);
 	});
 	
 	$("#ticket_info<%= i%>").hover(

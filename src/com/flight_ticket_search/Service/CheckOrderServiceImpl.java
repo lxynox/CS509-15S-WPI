@@ -26,7 +26,7 @@ import com.flight_ticket_search.Entity.User;
 public class CheckOrderServiceImpl extends HttpServlet implements
 		CheckOrderService {
 	
-	@Override
+	   @Override
 	   protected void doGet (HttpServletRequest request, HttpServletResponse response) {
 	    
 	   }
@@ -42,7 +42,7 @@ public class CheckOrderServiceImpl extends HttpServlet implements
 			   request.setAttribute("orderList", getOrder(userID));
 			   request.setAttribute("userInfo", getUser(userID));
 		   }
-		   
+
 //		   if page directs from confirm/cancel order page (return back to homepage)
 		   if (request.getParameter("confirm") != null) {
 			   
@@ -66,7 +66,6 @@ public class CheckOrderServiceImpl extends HttpServlet implements
 	       rd.forward(request, response);
 	   }
 
-	   
 	   public List<TicketInfo> getOrder (String userID) {
 		   return new UserDaoImpl().selectOrder(userID);
 	   }
@@ -78,6 +77,4 @@ public class CheckOrderServiceImpl extends HttpServlet implements
 	   public boolean deleteOrder (String number) {
 		   return new UserDaoImpl().deleteOrder(number);
 	   }
-
-
 }

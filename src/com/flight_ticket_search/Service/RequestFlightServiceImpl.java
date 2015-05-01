@@ -99,6 +99,7 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 				 request.setAttribute (INVALID_INPUT, dobe.getMessage());
 				 rd.forward(request, response); 
 			 } catch (Exception exp) {
+				 request.setAttribute (INVALID_INPUT, "Valid date format should be: YYYY-MM-DD, for eg. 2015-05-10");
 				rd.forward(request, response); 
 			 }
 			 
@@ -122,12 +123,10 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 						 request.setAttribute(INVALID_INPUT, "Return date must not be ealier than departure date !");
 						 rd.forward(request, response);
 					 }
-					 
 					 validReturnDate = "" + returnDate.getYear() + "_0" +
 							 						returnDate.getMonth() + "_" +
 							 					    (returnDate.getDay() < 10? "0":"") +
 							 					    returnDate.getDay();
-					
 				 } catch (NumberFormatException nfe) {
 					 request.setAttribute (INVALID_INPUT, "Valid date format should be: YYYY-MM-DD, for eg. 2015-05-10");
 					 rd.forward(request, response);
@@ -135,6 +134,7 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 					 request.setAttribute (INVALID_INPUT, dobe.getMessage());
 					 rd.forward(request, response); 
 				 } catch (Exception exp) {
+					request.setAttribute (INVALID_INPUT, "Valid date format should be: YYYY-MM-DD, for eg. 2015-05-10");
 					rd.forward(request, response); 
 				 }
 			 } else {
@@ -157,7 +157,6 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 						 invalidList.add(ticketList);
 					 }
 				 }
-				 
 				 roundTicket.removeAll(invalidList);
 			 }
 /* store all Round trip tickets into session */
@@ -191,12 +190,8 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 			 request.setAttribute("roundTicket", reqTickListList);
 			 // store the completed result in session
 			 rd = request.getRequestDispatcher("round_flight.jsp");
-//			 start locking database ...
-//			 new FlightDaoImpl().lockDB();
-			 
+
 		 } else {
-//			TODO: RESET DATABASE FOR TEST ONLY, REMEMBER TO REMOVE IT BEFORE RUNNING THE REAL SYSTEM 
-			 new FlightDaoImpl().resetDB();
 /* Single Trip Case */
 			 singleTicket = getSingleTrip(validDepartureAirport, validArrivalAirport, validDepartureDate);
 /* store all single tickets result into session */			 
@@ -403,7 +398,15 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 		return tickCollection;
 	}
 
-	// recursive handler for last method
+	/**
+	 * Flight union according to space && time constraints by DFS
+	 * @param dCityCode 	departure airport code
+	 * @param aCityCode		arrival airport code
+	 * @param dDate  		departure date
+	 * @param flightList	temporary flight list to hold flight legs
+	 * @param flightListList  list of working flight legs, from departure -> arrival
+	 * @param isOvernight	flag indicated that the flights is overnight or not
+	 */
 	@SuppressWarnings("unchecked")
 	private void getAllFlightsHandler(String dCityCode, String aCityCode,
 					String dDate, List<Flight> flightList, 
@@ -440,7 +443,6 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 			if (flight.getArrivalAirport().getCode().equals(aCityCode)) {
 				flightList = (List<Flight>) ((ArrayList<Flight>) unchangedList).clone();
 				flightList.add(flight);
-				
 //				add this ticket union  to the tickets collection
 				flightListList.add(flightList);
 			} else if (Math.abs(dLongt -aLongt) > Math.abs(dLat - aLat)) {
@@ -478,9 +480,8 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 						}
 					}
 				}
-
 			} else {
-				// |γ�Ȳ�| > |���Ȳ�|
+				// |latitude| > |longitude|
 				if (Math.abs(arrivalLat - aLat) < Math.abs(dLat - aLat)
 						&& Math.abs(arrivalLat - dLat) < Math.abs(dLat - aLat)
 							&& Math.abs(departLat - dLat) < Math.abs(arrivalLat - dLat)
@@ -494,7 +495,7 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 						if (flightList.size() < 3) {
 							getAllFlightsHandler(flight.getArrivalAirport()
 									.getCode(), aCityCode, dDate, flightList, 
-									flightListList, isOvernight); // ��ԭ�е�����union
+									flightListList, isOvernight); // union
 						}
 					} else if (flight.getArrivalTime().getDate().getDay() - 
 							flightList.get(0).getDepartureTime().getDate().getDay() == 1 && flightList.size() < 3) {
@@ -517,13 +518,13 @@ public class RequestFlightServiceImpl extends HttpServlet implements
 		}
 	}
 
+	/**
+	 * layover time should be within the range of
+	 * 1 ~ 8 hours
+	 */
 	private List<Flight> getDepartingFlightsAfter(String dCityCode, String dDate, Time aTime) { 
 		
     	List<Flight> resultList = new ArrayList<Flight>();
-    	/**
-    	 * layover time should be within the range of
-    	 * 1 ~ 8 hours
-    	 */
     	if (aTime.getHour() < 16) {
     		// Departing flights on the same day
     		for (Flight flight:  new FlightDaoImpl().selectFlights(dCityCode, dDate, true)) {

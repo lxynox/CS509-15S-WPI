@@ -41,60 +41,41 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
-		
-		
- 		
 		// 	Collection of All tickets combination, used for filtering (Collection.iterator(type))
  		TicketCollection ticketCollection = (TicketCollection) request.getSession().getAttribute("ticketCollection");
- 		
  		TicketCollection filteredCollection = (TicketCollectionImpl) request.getSession().getAttribute("filteredCollection");
 //		List of ALL Filtered tickets. Used for sorting as sort(List<Ticket>)
  		List<Ticket> filteredList = (List<Ticket>) ((TicketCollectionImpl) request.getSession().
  				getAttribute("filteredCollection")).getList();
  		
-		/* section for seat filtering 
-		 * check whether firstclass && coach && mixed is on 
-		 * */
+		/* section for seat filtering check whether firstclass && coach && mixed is on */
 		TicketIterator itr;
 		TicketCollection filterCollection = new TicketCollectionImpl();
 		if (request.getParameter("filter_button") != null) {
-			
 			if (request.getParameter("firstclass") != null) {
-			
 				if (request.getParameter("firstclass").equals("on")) {
-					
 					itr = ticketCollection.iterator(TicketTypeEnum.FIRSTCLASS);
-					
 					while(itr.hasNext()) {
 						filterCollection.add(itr.next());
 					}
-					
 				}
 			}
 			
 			if (request.getParameter("coach") != null) {
-				
 				if (request.getParameter("coach").equals("on")) {
-				
 					itr = ticketCollection.iterator(TicketTypeEnum.COACH);
-				
 					while(itr.hasNext()) {
 						filterCollection.add(itr.next());
-				
 					}
 				}
-				
 			}
 			
 			if (request.getParameter("mixed") != null) {
-				if (request.getParameter("mixed").equals("on")) {
-					
+				if (request.getParameter("mixed").equals("on")) {	
 					itr = ticketCollection.iterator(TicketTypeEnum.MIXED);
-				
 					while(itr.hasNext()) {
 						filterCollection.add(itr.next());
 					}	
-			
 				}
 			}	
 			/* section for stop filtering */
@@ -102,37 +83,28 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 			TicketCollectionImpl filterCollection2 = new TicketCollectionImpl();
 			if (request.getParameter("nonestop") != null) {
 				if (request.getParameter("nonestop").equals("on")) {
-		
 					itr2 = filterCollection.iterator(TicketTypeEnum.NONESTOP);
-					
 					while(itr2.hasNext()) {
 						filterCollection2.add(itr2.next());
 					}
-					
 				}
 			}
 			
 			if (request.getParameter("onestop") != null) {
 				if (request.getParameter("onestop").equals("on")) {
-					
 					itr2 = filterCollection.iterator(TicketTypeEnum.ONESTOP);
-					
 					while(itr2.hasNext()) {
 						filterCollection2.add(itr2.next());
 					}
-				
 				}			
 			}
 			
 			if (request.getParameter("multistop") != null) {
 				if (request.getParameter("multistop").equals("on")) {
-				
 					itr2 = filterCollection.iterator(TicketTypeEnum.MULTISTOP);
-				
 					while(itr2.hasNext()) {
 						filterCollection2.add(itr2.next());
 					}
-				
 				}
 			}
 			
@@ -159,7 +131,6 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 				int layoverMax = filterCollection2.getList().size() *
 						Integer.parseInt(request.getParameter("layoverMax"))/100;
 				filterByLayover(filterCollection2, layoverMin, layoverMax);
-				
 			}
 			
 			if (filterCollection2.getList().size() > 0) {
@@ -173,52 +144,34 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 			request.setAttribute("sortedCollection", filterCollection2);
 		}
 		
-		
 		/* section of sorting */
 		String sortType = request.getParameter("sort_type");
 		if (sortType != null) {
 			switch (sortType) {
-				
 				case "price":
-					
 					sortByPrice(filteredList);
 					break;
-					
 				case "duration":
-					
 					sortByDuration(filteredList);
 					break;
-					
 				case "take-off":
-					
 					sortByTakeoffTime(filteredList);
 					break;
-					
 				case "landing":
-					
 					sortByLandingTime(filteredList);
 					break;
-					
 				case "layover":
-					
 					sortByLayover(filteredList);
 					break;
-					
 				default: 
 					break;
-			
 			}
-			
 //			request parameter setting
 			request.setAttribute("sortedCollection", filteredCollection);
 		}
-		
-		
 		//out.println(ticketList);
-		
 		RequestDispatcher rd = request.getRequestDispatcher("single_flight.jsp");  
 		rd.forward(request,response);
-		
 	}
 	
 	@Override
@@ -227,35 +180,18 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 		doGet(request, response);
 	}
 	
-	/**
-	 * 
-	 * @param flightListList
-	 * @return the fligthList in sorted order asc/desc by its price
-	 */
 	public void sortByPrice(List<Ticket> tickets) {
 		Collections.sort(tickets, new FlightSortByPrice());
 	}
 	
-	
-	/**
-	 * 
-	 * @param flightListList
-	 * @return the flightList in sorted order according to the total length of the flight
-	 */
 	public void sortByDuration(List<Ticket> tickets) {
 		Collections.sort(tickets, new FlightSortByDuration());
 	}
 	
-	/**
-	 * 
-	 */
 	public void sortByTakeoffTime(List<Ticket> tickets) {
 		Collections.sort(tickets, new FlightSortByTakeoffTime());
 	}
 	
-	/**
-	 * 
-	 */
 	public void sortByLandingTime(List<Ticket> tickets) {
 		Collections.sort(tickets, new FlightSortByLandingTime());
 	}
@@ -278,9 +214,7 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 		Collections.sort(tickets, new FlightSortByLeg());
 	}
 	
-	
-	public class FlightSortByPrice implements Comparator<Ticket> {
-
+	private class FlightSortByPrice implements Comparator<Ticket> {
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 		 */
@@ -288,12 +222,10 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 		public int compare(Ticket o1, Ticket o2) {
 			// TODO Auto-generated method stub
 			return Double.compare(o1.getTotalPrice(), o2.getTotalPrice());
-		}
-		
+		}	
 	}
 	
-	public class FlightSortByDuration implements Comparator<Ticket> {
-
+	private class FlightSortByDuration implements Comparator<Ticket> {
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 		 */
@@ -301,24 +233,16 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 		public int compare(Ticket o1, Ticket o2) {
 			// TODO Auto-generated method stub
 			Time t1 = o1.getDuration();
-			
 			Time t2 = o2.getDuration();
-			
-			
 			if (t1.getHour() != t2.getHour()) {
-				
 				return t1.getHour() - t2.getHour();
-				
 			} else {
-				
 				return t1.getMinute() - t2.getMinute();
 			}
-
 		}
-		
 	}
 	
-	public class FlightSortByTakeoffTime implements Comparator<Ticket> {
+	private class FlightSortByTakeoffTime implements Comparator<Ticket> {
 
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
@@ -328,29 +252,22 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 			// TODO Auto-generated method stub
 			if (o1.getTakeOffTime().getDate().getDay() == 
 					o2.getTakeOffTime().getDate().getDay()) {
-			
 				if (o1.getTakeOffTime().getHour() == 
 						o2.getTakeOffTime().getHour()) {
-					
 					return o1.getTakeOffTime().getMinute() - 
 							o2.getTakeOffTime().getMinute();
-					
 				} else {
-					
 					return o1.getTakeOffTime().getHour() -
 							o2.getTakeOffTime().getHour();
 				}
-				
 			} else {
-				
 				return o1.getTakeOffTime().getDate().getDay() -
 						o2.getTakeOffTime().getDate().getDay();
 			}
 		}
-		
 	}
 	
-	public class FlightSortByLandingTime implements Comparator<Ticket> {
+	private class FlightSortByLandingTime implements Comparator<Ticket> {
 
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
@@ -360,29 +277,22 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 			// TODO Auto-generated method stub
 			if (o1.getLandingTime().getDate().getDay() == 
 					o2.getLandingTime().getDate().getDay()) {
-			
 				if (o1.getLandingTime().getHour() == 
 						o2.getLandingTime().getHour()) {
-					
 					return o1.getLandingTime().getMinute() - 
 							o2.getLandingTime().getMinute();
-					
 				} else {
-					
 					return o1.getLandingTime().getHour() -
 							o2.getLandingTime().getHour();
 				}
-				
 			} else {
-				
 				return o1.getLandingTime().getDate().getDay() -
 						o2.getLandingTime().getDate().getDay();
 			}
 		}
-		
 	}
 	
-	public class FlightSortByLayover implements Comparator<Ticket> {
+	private class FlightSortByLayover implements Comparator<Ticket> {
 
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
@@ -392,10 +302,9 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 			// TODO Auto-generated method stub
 			return o1.getLayover().getHour() - o2.getLayover().getHour();
 		}
-		
 	}
 	
-	public class FlightSortByLeg implements Comparator<Ticket> {
+	private class FlightSortByLeg implements Comparator<Ticket> {
 
 		/* (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
@@ -405,8 +314,6 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 			// TODO Auto-generated method stub
 			return o1.getTotalLeg().getHour() - o2.getTotalLeg().getHour();
 		}
-		
-		
 	}
 	/* (non-Javadoc)
 	 * @see com.flight_ticket_search.Service.SortFlightService#filterByTakeOff(com.flight_ticket_search.Iterator.TicketCollectionImpl)
@@ -417,7 +324,6 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 		// retrieve list from ticket collection for use of sorting
 		List<Ticket> ticketList = ticketCollection.getList();
 		sortByTakeoffTime(ticketList);
-		
 		ticketCollection.setList(ticketList.subList(minIndex, maxIndex));
 	}
 
@@ -429,7 +335,6 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 		// TODO Auto-generated method stub
 		List<Ticket> ticketList = ticketCollection.getList();
 		sortByLandingTime(ticketList);
-		
 		ticketCollection.setList(ticketList.subList(minIndex, maxIndex));
 	}
 
@@ -441,7 +346,6 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 		// TODO Auto-generated method stub
 		List<Ticket> ticketList = ticketCollection.getList();
 		sortByLayover(ticketList);
-		
 		ticketCollection.setList(ticketList.subList(minIndex, maxIndex));
 	}
 
@@ -453,9 +357,6 @@ public class SortFlightServiceImpl extends HttpServlet implements SortFlightServ
 		// TODO Auto-generated method stub
 		List<Ticket> ticketList = ticketCollection.getList();
 		sortByLeg(ticketList);
-		
 		ticketCollection.setList(ticketList.subList(minIndex, maxIndex));
 	}
-
-
 }

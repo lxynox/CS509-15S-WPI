@@ -30,9 +30,7 @@ public class ReservationServiceImpl extends HttpServlet implements ReservationSe
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
-		
 		RequestDispatcher rd = null; 
-		
 		Map<Integer, List<List<String>>> ticketMap = (Map<Integer, List<List<String>>>) 
 				request.getSession().getAttribute("ticketMap");
 		
@@ -41,7 +39,6 @@ public class ReservationServiceImpl extends HttpServlet implements ReservationSe
 		// from single/round flight jsp pages
 			ticketId = request.getParameter("ticketId");
 			request.setAttribute("ticketId", ticketId);
-		
 		} else {
 		//  redirecting from confirm_ticket_info.jsp
 			ticketId = (String) request.getSession().getAttribute("id");
@@ -52,9 +49,7 @@ public class ReservationServiceImpl extends HttpServlet implements ReservationSe
 		
 		if (request.getParameter("selectSingleTicket") != null
 				|| request.getParameter("selectRoundTicket") != null) {
-			
 			boolean isLocked = new FlightDaoImpl().lockDB();
-			
 			//	check whether some clients is holding the lock of database
 			if (isLocked) {
 				// no other client is holding the lock: check if flights are available
@@ -65,63 +60,44 @@ public class ReservationServiceImpl extends HttpServlet implements ReservationSe
 					for (List<String> sList: purchaseList) { 
 						flightList.add(new FlightDaoImpl().selectFlight(sList.get(0)));
 					}
-					
 					request.setAttribute("flightList", flightList);
 					rd = request.getRequestDispatcher("ticket_confirm_info.jsp");
-					
 				} else {
-					
 					new FlightDaoImpl().unlockDB();
 					//case:  ticket is already sold out 
 					request.setAttribute("ticketSoldout", true);
-					
 					if (request.getParameter("selectRoundTicket") != null) {
-						
 						request.setAttribute("sortedListList", request.getSession().
 								getAttribute("filteredListList"));
 						rd = request.getRequestDispatcher("round_flight.jsp");
-						
 					} else if (request.getParameter("selectSingleTicket") != null) {
-						
 						request.setAttribute("sortedCollection", request.getSession().
 								getAttribute("filteredCollection"));
 						rd = request.getRequestDispatcher("single_flight.jsp");
-					}
-					
+					}	
 				}
 			
 			} else {
-				
 				// extending case:  remind the user to line up for 2 minutes (lock failure)
 				request.setAttribute("lockFailure", true);
-				
 				if (request.getParameter("selectRoundTicket") != null) {
-					
 					request.setAttribute("sortedListList", request.getSession().
 							getAttribute("filteredListList"));
 					rd = request.getRequestDispatcher("round_flight.jsp");
-					
 				} else if (request.getParameter("selectSingleTicket") != null) {
-					
 					request.setAttribute("sortedCollection", request.getSession().
 							getAttribute("filteredCollection"));
 					rd = request.getRequestDispatcher("single_flight.jsp");
 				}
-				
 				rd.forward(request, response);
-				
 			}
-				
-		
 		}
 		
 //		redirecting from ticket_confirm_info.jsp
 		if (request.getParameter("buyTicket") != null) {
-			
 			String userID = request.getParameter("user_id");
 		    String firstName = request.getParameter("first_name");
 		    String lastName = request.getParameter("last_name");
-		
 //		    set the values into entities: User, TicketInfo, Order 
 		    User user = new User (userID, firstName, lastName);
 		    addUser (user);
@@ -130,26 +106,20 @@ public class ReservationServiceImpl extends HttpServlet implements ReservationSe
 		    for (TicketInfo ticketInfo: orderList) {
 		    	 addTicket (ticketInfo);
 		         addOrder (userID, ticketInfo.getNumber());
-		    }
-			
+		    }			
 //		    start purchasing the ticket
 			if (purchase(purchaseList)) {
 				new FlightDaoImpl().unlockDB();
 			}
-			
 			rd = request.getRequestDispatcher("thankyou_note.html");
 		}
-		
-		
 		rd.forward(request, response);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		doGet(request, response);
-		
 	}
 	
 	public boolean purchase(List<List<String>> purchaseList) {
@@ -158,31 +128,24 @@ public class ReservationServiceImpl extends HttpServlet implements ReservationSe
 	
 	public boolean checkFlight(List<List<String>> ticketInfo) {
 		for (List<String> sticket: ticketInfo) {
-			Flight  flight = 
-					new FlightDaoImpl().selectFlight(sticket.get(0));
-			
+			Flight  flight = new FlightDaoImpl().selectFlight(sticket.get(0));
 			switch (sticket.get(1)) {
-				
 				case "FirstClass":
 					if (flight.getAirplane().getFirstClassSeats() == 
 							flight.getSeat().getFirstClassSeats()) {
 						return false;
 					}
 					break;
-					
 				case "Coach":
 					if (flight.getAirplane().getCoachSeats() == 
 							flight.getSeat().getCoachSeats()) {
 						return false;
 					}
 					break;
-					
 				default: 
-					break;
+					return false;
 			}
-			
 		}
-		
 		return true;
 	}
 	

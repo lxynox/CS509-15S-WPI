@@ -114,7 +114,7 @@ class XMLConnector {
 	}
 
 	/* Http GET method to read data */
-	private String getXMLString(String query) {
+	protected String getXMLString(String query) {
 		URL url;
 		BufferedReader bReader;
 		HttpURLConnection conn;
@@ -127,6 +127,7 @@ class XMLConnector {
 			conn.setRequestProperty("User-Agent", "Team07");
 
 			int responseCode = conn.getResponseCode();
+//			System.out.println(responseCode);
 			if (responseCode >= 200 && responseCode <= 299) {
 				InputStream inputStream = conn.getInputStream();
 				String encoding = conn.getContentEncoding();
@@ -147,7 +148,7 @@ class XMLConnector {
 	}
 
 	/* Http POST to write data to database */
-	private boolean writeToDB(String params) {
+	protected boolean writeToDB(String params) {
 		URL url;
 		HttpURLConnection connection;
 

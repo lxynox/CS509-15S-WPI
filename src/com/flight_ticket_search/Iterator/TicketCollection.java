@@ -1,16 +1,14 @@
 /**
- * 
- */
-package com.flight_ticket_search.Iterator;
-
-import com.flight_ticket_search.Entity.Ticket;
-
-/**
  * @author lxybi_000
  * Date: 29, March, 2015
  * Description: Interface to put List(Flight)(one trip tickets) into List of collection
  * 				using iterator to specify sequence and approach of iteration
  */
+
+package com.flight_ticket_search.Iterator;
+
+import com.flight_ticket_search.Entity.Ticket;
+
 public interface TicketCollection  {
 	
 	/**
@@ -22,8 +20,6 @@ public interface TicketCollection  {
 	 * 			tickets collection
 	 */
 	public boolean add(Ticket ticket);
-	
-
 
 	/**
 	 * Return whether the ticket is successfully removed from the collection
@@ -36,7 +32,6 @@ public interface TicketCollection  {
 	 */
 	public boolean remove(Ticket ticket);
 
-	
 	/**
 	 * Return the iterator of the ticketCollection 
 	 * Specify the ticket type and get the corresponding iterator from the collection

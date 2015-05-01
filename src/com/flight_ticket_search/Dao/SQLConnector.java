@@ -1,6 +1,8 @@
 /**
- * 
+ * @author lxybi_000
+ *
  */
+
 package com.flight_ticket_search.Dao;
 
 import java.sql.Connection;
@@ -15,12 +17,6 @@ import java.util.List;
 import com.flight_ticket_search.Entity.TicketInfo;
 import com.flight_ticket_search.Entity.User;
 import com.flight_ticket_search.Util.QueryFactory;
-
-/**
- * @author lxybi_000
- *
- */
-
 
 class SQLConnector {
 

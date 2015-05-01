@@ -20,9 +20,10 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
   <style>
 	body{
-		font: 100% "Trebuchet MS", sans-serif;
-		line-height: 120%;
+		font: 90% "Trebuchet MS", sans-serif;
+		
 	}
+h3{padding:2px;}
 	.demoHeaders {
 		margin-top: 2em;
 	}
@@ -78,8 +79,8 @@ $("#left").css({ left:left + "px", top: top + "px" });
 
 <div id= "main">
 	
-	<div id= "left"style="float:left;position:absolute;font-size:14px;line-height: 5px;">
-		<p style="font-size:18px;"><strong>Ticket Filter</strong></p>
+	<div id= "left"style="float:left;position:absolute;font-size:14px;line-height: 2px;">
+		<p style="font-size:16px;"><strong>Ticket Filter</strong></p>
 
 		<form method= "get" action= "sortServlet">
 	
@@ -217,10 +218,10 @@ $("#left").css({ left:left + "px", top: top + "px" });
 			<div id= "seat" class= "filter_window">
 				<h3>Cabin</h3>
 				<div class= "filter_content">
-					<input type= "checkbox" name= "coach" checked= "checked">Coach<br>
+					<input type= "checkbox" name= "coach" checked= "checked">Coach
 					<input type= "checkbox" name= "firstclass" checked= "checked">First Class<br>
 					<input type= "checkbox" name= "mixed" checked= "checked">Mixed<br>
-					<br>
+					
 				</div>
 			</div>
 			
@@ -254,7 +255,7 @@ $("#left").css({ left:left + "px", top: top + "px" });
 				</div>
 				
 				<!--  filtering button here to start filtering -->
-				<input type= "submit" style= "margin: 50px 50% 10px; width: 45%; height: 20px" 
+				<input type= "submit" style= "margin: 0px 50% 2px; width: 35%; height: 25px" 
 					name= "filter_button" value= "start filtering">
 			</div>
 
